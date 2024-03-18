@@ -1,12 +1,12 @@
 interface IconTemplate {
     defaultColor: string
-    stroke?: boolean
-    viewBox?: string
-    template: string[]
+    stroke?: boolean;
+    viewBox?: string;
+    template: string[];
     defaultSizes: {
-        width?: number
-        height?: number
-    }
+        width?: number;
+        height?: number;
+    };
 }
 
 export const Logo = {
