@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type {SanityModuleArticle} from '~/types';
-
+import type {SanityModuleArticle} from '~/types'
 import {CLASS_FONT_SIZES} from '~/constants'
 
 defineProps<SanityModuleArticle>()
@@ -35,7 +34,7 @@ const serializers = {
 <template>
     <div class="flex flex-col lg:flex-row">
         <div class="relative lg:sticky lg:top-[80px] w-full h-full lg:max-w-[280px] lg:mr-24">
-            <BaseArticleNav
+            <ModuleArticleNav
                 :groups="groups"
                 class="divide-y divide-gray/[.1] mb-12 bg-white"
             />
@@ -45,7 +44,7 @@ const serializers = {
                 v-for="group in groups"
                 :id="group.slug"
             >
-                <BasePortableText
+                <PortableText
                     :serializers="serializers"
                     :value="group.body"
                     flex-col

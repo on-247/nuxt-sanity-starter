@@ -59,6 +59,6 @@ onBeforeUnmount(() => scroll.destroy());
         </main>
         <Footer />
         <DrawerRenderer />
-        <BasePreLoader />
+        <PreLoader />
     </ClientOnly>
 </template>

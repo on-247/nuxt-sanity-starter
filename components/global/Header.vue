@@ -52,7 +52,7 @@ scroll.down(({y}) => {scrollY.value = y; scrollDirection.value = 'down'})
                     v-else
                     class="flex"    
                 >
-                    <BaseMenu
+                    <Menu
                         :links="settings.menu.links"
                         link-class="px-4 py-3"
                         list

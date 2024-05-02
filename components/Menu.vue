@@ -1,11 +1,6 @@
 <script setup lang="ts">
-import { PortableText } from '@portabletext/vue'
-
-import {
-    BaseLinkExternal as LinkExternal,
-    BaseLinkInternal as LinkInternal,
-    BaseLinkAnchor as LinkAnchor,
-} from '#components'
+import {PortableText} from '@portabletext/vue'
+import {LinkExternal, LinkInternal, LinkAnchor} from '#components'
 
 import type {
     TypeValue,

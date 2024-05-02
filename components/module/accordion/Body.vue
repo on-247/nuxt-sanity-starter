@@ -22,7 +22,7 @@ const height = computed(() => {
                 opacity: expanded ? '1' : '0'
             }"
         >
-            <BasePortableText
+            <PortableText
                 :value="body"
                 flex-col
                 :class="['gap-y-1 pt-4']"

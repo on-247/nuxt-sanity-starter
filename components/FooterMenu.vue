@@ -13,7 +13,7 @@ defineProps<Props>()
     <div>
         <h6 class="font-medium text-gray mb-2">{{ label }}</h6>
         <ul class="flex flex-col">
-            <BaseMenu
+            <Menu
                 :links="links"
                 link-class="py-2"
                 list

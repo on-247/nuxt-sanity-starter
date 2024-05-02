@@ -19,7 +19,7 @@ onBeforeUnmount(() => stop())
 
 <template>
     <ul :class="['flex flex-col', FONT_SIZES.h3]">
-        <BaseMenu
+        <Menu
             v-if="settings.menu?.links?.length"
             :links="settings.menu.links"
             link-class="w-full px-4 py-3"

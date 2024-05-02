@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import {PortableText} from '@portabletext/vue'
-
 import {
-    BaseLinkExternal as AnnotationLinkExternal,
-    BaseLinkInternal as AnnotationLinkInternal,
-    BaseLinkAnchor as AnnotationLinkAnchor,
+    LinkExternal,
+    LinkInternal,
+    LinkAnchor,
     ModuleAccordion,
     ModuleArticle
 } from '#components'
@@ -92,14 +91,14 @@ const defaultSerializers = {
             {value: {url, targetBlank}}: TypeValue<SanityLinkExternal>,
             {slots}: any
         ) => {
-            return h(AnnotationLinkExternal, {url, targetBlank}, slots)
+            return h(LinkExternal, {url, targetBlank}, slots)
         },
 
         annotationLinkInternal: (
             {value: {slug, documentType}}: TypeValue<SanityLinkInternal>,
             {slots}: any
         ) => {
-            return h(AnnotationLinkInternal, {
+            return h(LinkInternal, {
                 to: slug,
                 documentType: documentType,
                 underline: true
@@ -110,7 +109,7 @@ const defaultSerializers = {
             {value}: TypeValue<SanityLinkAnchor>,
             {slots}: any
         ) => {
-            return h(AnnotationLinkAnchor, value, slots)
+            return h(LinkAnchor, value, slots)
         }
     },
     types: {
