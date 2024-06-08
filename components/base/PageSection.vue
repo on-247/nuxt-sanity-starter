@@ -10,5 +10,5 @@ const id = computed(() => prop.anchorId === 'Sectie' ? undefined : prop.anchorId
 <template>
     <section :id="id">
         <slot />
-    </section>q
+    </section>
 </template>
