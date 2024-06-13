@@ -31,9 +31,13 @@ onBeforeUnmount(() => useScroll().destroy());
             <div class="mt-24" />
             <BasePageSection
                 v-if="data?.notFoundPage"
-                :="data.notFoundPage"
-                flex-col
-            />
+            >
+                <PortableText
+                    :value="data.notFoundPage.body"
+                    :flex-col="true"
+                    class="gap-y-8 container w-full mx-auto px-[20px] py-16"
+                />
+            </BasePageSection>
         </main>
         <Footer />
         <DrawerRenderer />

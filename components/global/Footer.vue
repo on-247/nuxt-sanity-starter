@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import {FONT_SIZES} from '~/constants'
-
 const settings = useState<any>('settings')
 
 const year = computed(() => new Date().getFullYear())
@@ -15,11 +13,11 @@ const year = computed(() => new Date().getFullYear())
             <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                 <Icon
                     name="logo"
-                    :sizes="FONT_SIZES.h3"
+                    :sizes="50"
                     class="text-red mb-8"
                 />
-                <BaseFooterMenu
-                    v-for="menu in settings.footerMenus"
+                <MenuColumn
+                    v-for="menu in settings?.footerMenus"
                     :label="menu.label"
                     :links="menu.links"
                 />

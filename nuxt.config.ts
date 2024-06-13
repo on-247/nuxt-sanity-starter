@@ -13,6 +13,16 @@ export default defineNuxtConfig({
         enabled: false
     },
 
+    vite: {
+        server: {
+            hmr: {
+                clientPort: process.env.HMR_CLIENT_PORT
+                    ? parseInt(process.env.HMR_CLIENT_PORT)
+                    : undefined
+            }
+        }
+    },
+
     modules: [
         '@nuxtjs/sitemap',
         '@nuxtjs/tailwindcss',

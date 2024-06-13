@@ -2,14 +2,14 @@ import {type Block} from './portableText'
 
 export type SanityHome =
 {
-    _type: 'home';
+    _type?: string;
     modules: SanityModule[];
     seo: SanitySEO;
 }
 
 export type SanityPage =
 {
-    _type: 'page';
+    _type?: string;
     slug?: string;
     title: string;
     sections: PageSection[];
@@ -18,45 +18,57 @@ export type SanityPage =
 
 export type PageSection =
 {
+    _key?: string;
+    _type?: string;
     anchorId?: string;
     body: (SanityModule | Block)[];
+    color?: boolean;
     paddingTop?: boolean;
 }
 
 export type SanitySettings =
 {
-    _type: 'settings';
+    _type?: string;
     seo: SanitySEO;
     menu: {links: SanityLink[]};
     notFoundPage: SanityNotFoundPage;
 }
 
-export type SanityLink = SanityLinkExternal | SanityLinkInternal;
+export type SanityLink = SanityLinkExternal | SanityLinkInternal | SanityLinkAnchor;
 
 export type SanityLinkExternal =
 {
-    _key: string;
-    _type: 'linkExternal';
+    _key?: string;
+    _type?: string;
     targetBlank?: boolean;
     url: string;
     title: string;
+    underline?: boolean;
+    icon?: string;
+    iconTrailing?: boolean;
 }
 
 export type SanityLinkInternal =
 {
-    _key: string;
-    _type: 'linkInternal';
+    _key?: string;
+    _type?: string;
     documentType: string;
     slug?: string;
     title: string;
+    underline?: boolean;
+    icon?: string;
+    iconTrailing?: boolean;
 }
 
 export type SanityLinkAnchor =
 {
-    _key: string;
-    _type: 'linkCta';
+    _key?: string;
+    _type?: string;
     title?: string;
     anchorId?: string;
+    underline?: boolean;
+    icon?: string;
+    iconTrailing?: boolean;
 }
 
 export type SanityNotFoundPage =
@@ -67,7 +79,7 @@ export type SanityNotFoundPage =
 
 export type SanitySEO =
 {
-    _type: 'seo';
+    _type?: string;
     title?: string;
     description?: string;
 }
@@ -75,12 +87,12 @@ export type SanitySEO =
 export type SanityModule =
 {
     _key?: string;
-    _type: string;
+    _type?: string;
 }
 
 export type SanityModuleAccordion = {
     groups: {
-        _key: string;
+        _key?: string;
         title: string;
         body: any[];
     }[]
@@ -88,7 +100,7 @@ export type SanityModuleAccordion = {
 
 export type SanityModuleArticle = {
     groups: {
-        _key: string;
+        _key?: string;
         title: string;
         slug: string;
         body: Block[];
@@ -96,6 +108,7 @@ export type SanityModuleArticle = {
 } & SanityModule
 
 export type SanityModuleForm = {
+    body: Block[],
     form: {
         formDropFormId: string;
         turnstileSiteKey: string;
@@ -105,21 +118,30 @@ export type SanityModuleForm = {
         loadingLabel: string;
         successMessage: string;
         errorMessage: string;
-        // steps:  
-        // fields: 
+        fields: FormField[];
     }
 } & SanityModule
 
+type FormField =
+    | FormCheckbox
+    | FormInput
+    | FormRadio
+
 export type FormCheckbox = {
-    _type: 'form.checkbox';
+    _key?: string;
+    _type?: string;
     name: string;
     label: string;
     required?: boolean;
-    values: [string, string];
+    values: {
+        value: string;
+        label: string;
+    }[];
 }
 
 export type FormInput = {
-    _type: 'form.input';
+    _key?: string;
+    _type?: string;
     name: string;
     label: string;
     required?: boolean;
@@ -138,16 +160,19 @@ export type FormInput = {
 }
 
 export type FormRadio = {
-    _type: 'form.radio';
+    _key?: string;
+    _type?: string;
     name: string;
     required?: boolean;
     values: {
        value: string;
        label: string; 
-    }[]
+    }[];
+    multiple?: boolean;
 }
 
 export type Image = WithAlt<{
+    _type?: string;
     asset: Record<string, any>;
     hotspot?: Record<string, any>;
 }>;

@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import {FONT_SIZES} from '~/constants'
-
 const scroll = useScroll()
 const settings = useState<any>('settings')
 const smallDevice = useBreakpoint().between('xs', 'lg')
 
 const scrollDirection = ref('up')
-const scrollY = ref(window.scrollY)
-const hasScrolled = computed(() => scrollY.value > 0)
-const hideNav = computed(() => scrollDirection.value === 'down' && hasScrolled.value)
+const scrollY         = ref(window.scrollY)
+const hasScrolled     = computed(() => scrollY.value > 0)
+const hideNav         = computed(() => scrollDirection.value === 'down'
+                                       && hasScrolled.value)
 
 scroll.up(({y}) => {scrollY.value = y; scrollDirection.value = 'up'})
 scroll.down(({y}) => {scrollY.value = y; scrollDirection.value = 'down'})
@@ -29,7 +28,7 @@ scroll.down(({y}) => {scrollY.value = y; scrollDirection.value = 'down'})
                 <NuxtLink to="/">
                     <Icon
                         name="logo"
-                        :sizes="FONT_SIZES.h3"
+                        :sizes="50"
                     />
                 </NuxtLink>
                 <!--  -->
@@ -44,22 +43,25 @@ scroll.down(({y}) => {scrollY.value = y; scrollDirection.value = 'down'})
                     >
                         <Icon
                             name="menu"
-                            :sizes="FONT_SIZES.h5"
+                            :sizes="50"
                         />
                     </button>
                 </div>
                 <ul
-                    v-else
-                    class="flex"    
+                    v-else-if="!smallDevice && settings.menu?.links"
+                    class="m flex flex items-center"    
                 >
-                    <Menu
-                        :links="settings.menu.links"
-                        link-class="px-4 py-3"
-                        list
-                        class="flex gap-4 items-center"
-                    />
+                    <MenuLinks :links="settings.menu.links" />
                 </ul>
             </div>
         </div>
     </header>
 </template>
+
+<style lang="scss" scoped>
+.m :deep(a) {
+    line-height: 45px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+</style>

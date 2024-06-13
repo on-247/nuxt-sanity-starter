@@ -1,9 +1,7 @@
 <script setup lang="ts">
-interface Props {
-    anchorId: string;
-}
+import type {PageSection} from '~/types'
 
-const prop = defineProps<Props>()
+const prop = defineProps<PageSection>()
 const id = computed(() => prop.anchorId === 'Sectie' ? undefined : prop.anchorId)
 </script>
 

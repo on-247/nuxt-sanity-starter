@@ -12,5 +12,8 @@ export const LINK_INTERNAL = groq`
         (_type == "page") => {
             "slug": "/" + slug.current,
         },
-    }
+    },
+    icon,
+    underline,
+    iconTrailing
 `

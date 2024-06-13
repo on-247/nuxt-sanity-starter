@@ -16,7 +16,7 @@ if (data.value?.seo)
     <div>
         <BasePageSection
             v-if="data?.sections"
-            v-for="{anchorId, body} in data?.sections"
+            v-for="{anchorId, body} in data.sections"
             :anchor-id="anchorId"
         >
             <PortableText

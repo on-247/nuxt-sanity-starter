@@ -1,7 +1,3 @@
-export type TypeValue<T> = {
-    value: T;
-}
-
 export type Block<
     K = string,
     T = 'span',

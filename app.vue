@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TransitionProps } from 'vue';
+import type {TransitionProps} from 'vue';
 import {SETTINGS_QUERY} from '~/queries/sanity/settings';
 
 const scroll = useScroll({})
@@ -19,6 +19,27 @@ if (data.value?.seo) {
         ogDescription: data.value.seo?.description
     });
 }
+
+usePortableTextRegister({
+    types: [
+        'module.accordion',
+        'module.article',
+        'module.form',
+
+        'form.input',
+        'form.checkbox',
+        'form.radio',
+
+        ['~portable-text.marks.link.anchor', 'linkAnchor'],
+        ['~portable-text.marks.link.internal', 'linkInternal'],
+        ['~portable-text.marks.link.external', 'linkExternal'],
+    ],
+    marks: [
+        ['link.anchor', 'annotationLinkAnchor'],
+        ['link.internal', 'annotationLinkInternal'],
+        ['link.external', 'annotationLinkExternal'],
+    ]
+})
 
 useDrawerRegister([
     'header.menu',

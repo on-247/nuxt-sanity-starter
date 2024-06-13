@@ -5,5 +5,8 @@ export const LINK_EXTERNAL = groq`
     _type,
     title,
     url,
-    targetBlank
+    targetBlank,
+    icon,
+    underline,
+    iconTrailing
 `

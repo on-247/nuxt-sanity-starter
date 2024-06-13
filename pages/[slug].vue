@@ -20,8 +20,14 @@ if (data.value?.seo)
     <div>
         <BasePageSection
             v-if="data?.sections"
-            v-for="section in data?.sections"
-            :="section"
-        />
+            v-for="{anchorId, body} in data.sections"
+            :anchor-id="anchorId"
+        >
+            <PortableText
+                :value="body"
+                :flex-col="true"
+                class="gap-y-8 container w-full mx-auto px-[20px] py-16"
+            />
+        </BasePageSection>
     </div>
 </template>

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import {FONT_SIZES} from '~/constants'
-
 const loaded = ref(false)
 
 useNuxtApp().hook('page:finish', () => {
@@ -20,7 +18,7 @@ useNuxtApp().hook('page:finish', () => {
         <div class="flex items-center gap-2">
             <Icon
                 name="logo"
-                :sizes="FONT_SIZES.h3"
+                :sizes="50"
             />
             <div class="font-medium">on-247</div>
         </div>

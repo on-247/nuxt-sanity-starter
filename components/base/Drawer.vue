@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import {FONT_SIZES} from '~/constants'
-
 const emit = defineEmits<{
     (e: 'close', payload: boolean): void
 }>()
@@ -83,7 +81,7 @@ onBeforeUnmount(() => clearOnUnmount.forEach(clear => clear()))
                 >
                     <Icon
                         name="minus"
-                        :sizes="FONT_SIZES.h1"
+                        :sizes="50"
                         :stroke="1"
                         class="cursor-pointer"
                     />

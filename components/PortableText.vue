@@ -1,23 +1,10 @@
 <script setup lang="ts">
 import {PortableText} from '@portabletext/vue'
-import {
-    LinkExternal,
-    LinkInternal,
-    LinkAnchor,
-    ModuleAccordion,
-    ModuleArticle
-} from '#components'
-
-import type {
-    TypeValue,
-    SanityLinkInternal,
-    SanityLinkExternal,
-    SanityLinkAnchor,
-    SanityModuleAccordion,
-    SanityModuleArticle
-} from '~/types'
-
 import {CLASS_FONT_SIZES} from '~/constants'
+
+type TypeValue<T> = {
+    value: T;
+}
 
 interface Emits {
     (e: 'mounted', payload: HTMLElement): void;
@@ -27,10 +14,15 @@ interface Props {
     value: any;
     serializers?: any;
     flexCol?: boolean;
+    wrapped?: boolean;
 }
 
 const emit = defineEmits<Emits>()
-defineProps<Props>()
+withDefaults(
+    defineProps<Props>(), {
+    wrapped: true
+})
+const portableText = usePortableText()
 
 const defaultSerializers = {
     block: {
@@ -86,56 +78,22 @@ const defaultSerializers = {
             }, slots)
         }
     },
-    marks: {
-        annotationLinkExternal: (
-            {value: {url, targetBlank}}: TypeValue<SanityLinkExternal>,
-            {slots}: any
-        ) => {
-            return h(LinkExternal, {url, targetBlank}, slots)
-        },
-
-        annotationLinkInternal: (
-            {value: {slug, documentType}}: TypeValue<SanityLinkInternal>,
-            {slots}: any
-        ) => {
-            return h(LinkInternal, {
-                to: slug,
-                documentType: documentType,
-                underline: true
-            }, slots)
-        },
-
-        annotationLinkAnchor: (
-            {value}: TypeValue<SanityLinkAnchor>,
-            {slots}: any
-        ) => {
-            return h(LinkAnchor, value, slots)
-        }
-    },
-    types: {
-        'module.accordion': (
-            {value: {groups}}: TypeValue<SanityModuleAccordion>
-        ) => {
-            return h(ModuleAccordion, {groups})
-        },
-
-        'module.article': (
-            {value: {groups}}: TypeValue<SanityModuleArticle>
-        ) => {
-            return h(ModuleArticle, {groups})
-        }
-    }
+    marks: portableText.marks,
+    types: portableText.types
 }
 
 onMounted(() => emit('mounted', getCurrentInstance()?.proxy?.$el))
 </script>
 
 <template>
-    <div :class="[
-        'portable-text',
-        'flex', {
-        'flex-col': flexCol
-    }]">
+    <div
+        v-if="wrapped"
+        :class="[
+            'portable-text',
+            'flex', {
+            'flex-col': flexCol
+        }]"
+    >
         <PortableText
             :value="value"
             :components="{
@@ -159,4 +117,27 @@ onMounted(() => emit('mounted', getCurrentInstance()?.proxy?.$el))
             }"
         />
     </div>
+    <PortableText
+        v-else
+        :value="value"
+        :components="{
+            marks: {
+                ...defaultSerializers.marks,
+                ...(serializers?.marks ?? {})
+            },
+            block: {
+                ...defaultSerializers.block,
+                ...(serializers?.block ?? {})
+            },
+            types: {
+                ...defaultSerializers.types,
+                ...(serializers?.types ?? {})
+            },
+            list: {
+                ...defaultSerializers.list,
+                ...(serializers?.list ?? {})
+            },
+            listItem: serializers?.listItem
+        }"
+    />
 </template>

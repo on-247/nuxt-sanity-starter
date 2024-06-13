@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import {FONT_SIZES} from '~/constants'
-
 interface Props {
     id: string;
 }
@@ -18,12 +16,11 @@ onBeforeUnmount(() => stop())
 </script>
 
 <template>
-    <ul :class="['flex flex-col', FONT_SIZES.h3]">
-        <Menu
-            v-if="settings.menu?.links?.length"
-            :links="settings.menu.links"
-            link-class="w-full px-4 py-3"
-            list
+    <ul class="flex flex-col px-[20px] py-8 gap-8">
+        <MenuColumn
+            v-for="menu in settings?.footerMenus"
+            :label="menu.label"
+            :links="menu.links"
         />
     </ul>
 </template> 

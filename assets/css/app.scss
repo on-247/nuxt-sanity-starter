@@ -5,18 +5,24 @@ body,
     height: 100%;
 }
 
-html.lenis, html.lenis body {
-height: auto;
+html.lenis,
+html.lenis body {
+    height: auto;
 }
 
 .lenis.lenis-smooth {
-scroll-behavior: auto !important;
+    scroll-behavior: auto !important;
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
-overscroll-behavior: contain;
+    overscroll-behavior: contain;
 }
 
 .lenis.lenis-stopped {
-overflow: hidden;
+    overflow: hidden;
+}
+
+:root {
+    --form-valid-color: green;
+    --form-invalid-color: red;
 }

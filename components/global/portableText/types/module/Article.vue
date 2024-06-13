@@ -34,10 +34,17 @@ const serializers = {
 <template>
     <div class="flex flex-col lg:flex-row">
         <div class="relative lg:sticky lg:top-[80px] w-full h-full lg:max-w-[280px] lg:mr-24">
-            <ModuleArticleNav
-                :groups="groups"
-                class="divide-y divide-gray/[.1] mb-12 bg-white"
-            />
+            <nav class="w-full flex flex-col divide-y divide-gray/[.1] mb-12 bg-white">
+                <div class="font-medium mb-3">Op deze pagina:</div>
+                <a
+                    v-for="{title, slug} in groups"
+                    :href="`#${slug}`"
+                    class="py-3 pl-4 text-gray hover:text-black"
+                    @click.prevent="useScroll().to(`#${slug}`)"
+                >
+                    {{ title }}
+                </a>
+            </nav>
         </div>
         <article class="w-full flex flex-col gap-12">
             <div

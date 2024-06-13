@@ -21,16 +21,22 @@ const isCurrent = computed(() => (group: SanityModuleAccordion['groups'][0]) => 
             class="py-[20px] cursor-pointer"
             @click="setKey(accordionGroup._key)"
         >
-            <ModuleAccordionHeader
+
+            <BaseAccordionBody
+                :expanded="isCurrent(accordionGroup)"
+            >
+                <PortableText
+                    :value="accordionGroup.body"
+                    flex-col
+                    :class="['gap-y-1 pt-4']"
+                />
+            </BaseAccordionBody>
+            <BaseAccordionHeader
                 :active="isCurrent(accordionGroup)"
                 :icon="icon"
             >
                 {{accordionGroup.title}}
-            </ModuleAccordionHeader>
-            <ModuleAccordionBody
-                :body="accordionGroup.body"
-                :expanded="isCurrent(accordionGroup)"
-            />
+            </BaseAccordionHeader>
         </div>
     </div>
 </template>

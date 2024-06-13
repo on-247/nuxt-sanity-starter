@@ -1,10 +1,10 @@
 {
-  "name": "nuxt3-sanity-starter",
+  "name": "nuxt-sanity-starter",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --host '0.0.0.0'",
+    "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"

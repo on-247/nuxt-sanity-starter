@@ -9,13 +9,3 @@ export const CLASS_FONT_SIZES = {
     sm: 'text-sm',
     xs: 'text-xs',
 }
-
-export const FONT_SIZES = {
-    h1: 47.78,
-    h2: 39.82,
-    h3: 27.65,
-    h4: 27.65,
-    h5: 23.04,
-    h6: 19.2,
-    base: 16,
-}

@@ -22,11 +22,7 @@ const height = computed(() => {
                 opacity: expanded ? '1' : '0'
             }"
         >
-            <PortableText
-                :value="body"
-                flex-col
-                :class="['gap-y-1 pt-4']"
-            />
+            <slot />
         </div>
     </span>
 </template>
